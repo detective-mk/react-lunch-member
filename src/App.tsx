@@ -7,6 +7,7 @@ import {
   Heading,
   UnorderedList,
   ListItem,
+  Stack,
   VStack,
 } from "@chakra-ui/react";
 import { designer, developer, director } from "./data/member";
@@ -50,44 +51,46 @@ function App() {
   return (
     <Box boxShadow="lg" rounded="md" p="20" bg="white">
       <VStack spacing={16}>
-        <Heading as="h1" size="xl">
-          ランチメンバー決めツール
-        </Heading>
+        <VStack spacing={24}>
+          <Heading as="h1" size="xl">
+            ランチメンバー決めツール
+          </Heading>
 
-        <SimpleGrid columns={3} spacing={20}>
-          <VStack spacing={6} alignItems={"flex-start"}>
-            <Heading as="h2" size="lg">
-              ディレクター
-            </Heading>
-            <UnorderedList>
-              {directorGroup.map((member, index) => (
-                <ListItem key={index}>{member}</ListItem>
-              ))}
-            </UnorderedList>
-          </VStack>
-          <VStack spacing={6} alignItems={"flex-start"}>
-            <Heading as="h2" size="lg">
-              デザイナー
-            </Heading>
-            <UnorderedList>
-              {designerGroup.map((member, index) => (
-                <ListItem key={index}>{member}</ListItem>
-              ))}
-            </UnorderedList>
-          </VStack>
-          <VStack spacing={6} alignItems={"flex-start"}>
-            <Heading as="h2" size="lg">
-              開発者
-            </Heading>
-            <UnorderedList>
-              {developerGroup.map((member, index) => (
-                <ListItem key={index}>{member}</ListItem>
-              ))}
-            </UnorderedList>
-          </VStack>
-        </SimpleGrid>
+          <SimpleGrid columns={3} spacing={20}>
+            <Stack spacing={6}>
+              <Heading as="h2" size="lg">
+                ディレクター
+              </Heading>
+              <UnorderedList>
+                {directorGroup.map((member, index) => (
+                  <ListItem key={index}>{member}</ListItem>
+                ))}
+              </UnorderedList>
+            </Stack>
+            <Stack spacing={6}>
+              <Heading as="h2" size="lg">
+                デザイナー
+              </Heading>
+              <UnorderedList>
+                {designerGroup.map((member, index) => (
+                  <ListItem key={index}>{member}</ListItem>
+                ))}
+              </UnorderedList>
+            </Stack>
+            <Stack spacing={6}>
+              <Heading as="h2" size="lg">
+                開発者
+              </Heading>
+              <UnorderedList>
+                {developerGroup.map((member, index) => (
+                  <ListItem key={index}>{member}</ListItem>
+                ))}
+              </UnorderedList>
+            </Stack>
+          </SimpleGrid>
+        </VStack>
 
-        <Button colorScheme="blue" onClick={makeTeam}>
+        <Button colorScheme="teal" onClick={makeTeam}>
           {teams.length ? "シャッフル" : "メンバー決め"}
         </Button>
 
@@ -96,7 +99,7 @@ function App() {
             {teams.map((team, index) => {
               return (
                 <div key={index}>
-                  <VStack spacing={6} alignItems={"flex-start"}>
+                  <Stack spacing={6}>
                     <Heading as="h2" size="lg">
                       チーム{index + 1}
                     </Heading>
@@ -105,7 +108,7 @@ function App() {
                         <ListItem key={index}>{member}</ListItem>
                       ))}
                     </UnorderedList>
-                  </VStack>
+                  </Stack>
                 </div>
               );
             })}
