@@ -11,13 +11,12 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { designer, developer, director } from "./data/member";
+import RoleList from "./components/RoleList";
 
 function App() {
   /** チーム数 */
   const numberOfTeams = 4;
-  const directorGroup = [...director];
-  const designerGroup = [...designer];
-  const developerGroup = [...developer];
+  const roleList = ["ディレクター", "デザイナー", "開発者"];
   const allMember = [[...director], [...designer], [...developer]];
   const [teams, setTeams] = useState<string[][]>([]);
 
@@ -57,36 +56,15 @@ function App() {
           </Heading>
 
           <SimpleGrid columns={3} spacing={20}>
-            <Stack spacing={6}>
-              <Heading as="h2" size="lg">
-                ディレクター
-              </Heading>
-              <UnorderedList>
-                {directorGroup.map((member, index) => (
-                  <ListItem key={index}>{member}</ListItem>
-                ))}
-              </UnorderedList>
-            </Stack>
-            <Stack spacing={6}>
-              <Heading as="h2" size="lg">
-                デザイナー
-              </Heading>
-              <UnorderedList>
-                {designerGroup.map((member, index) => (
-                  <ListItem key={index}>{member}</ListItem>
-                ))}
-              </UnorderedList>
-            </Stack>
-            <Stack spacing={6}>
-              <Heading as="h2" size="lg">
-                開発者
-              </Heading>
-              <UnorderedList>
-                {developerGroup.map((member, index) => (
-                  <ListItem key={index}>{member}</ListItem>
-                ))}
-              </UnorderedList>
-            </Stack>
+            {roleList.map((role, index) => {
+              return (
+                <RoleList
+                  role={role}
+                  roleGroup={allMember[index]}
+                  key={index}
+                ></RoleList>
+              );
+            })}
           </SimpleGrid>
         </VStack>
 
