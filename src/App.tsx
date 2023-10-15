@@ -1,17 +1,9 @@
 import "./App.css";
 import { useState } from "react";
-import {
-  Box,
-  Button,
-  SimpleGrid,
-  Heading,
-  UnorderedList,
-  ListItem,
-  Stack,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Button, SimpleGrid, Heading, VStack } from "@chakra-ui/react";
 import { designer, developer, director } from "./data/member";
 import RoleList from "./components/RoleList";
+import TeamList from "./components/TeamList";
 
 function App() {
   /** チーム数 */
@@ -76,18 +68,7 @@ function App() {
           <SimpleGrid columns={2} spacingX="100px" spacingY="60px">
             {teams.map((team, index) => {
               return (
-                <div key={index}>
-                  <Stack spacing={6}>
-                    <Heading as="h2" size="lg">
-                      チーム{index + 1}
-                    </Heading>
-                    <UnorderedList>
-                      {team.map((member, index) => (
-                        <ListItem key={index}>{member}</ListItem>
-                      ))}
-                    </UnorderedList>
-                  </Stack>
-                </div>
+                <TeamList team={team} index={index} key={index}></TeamList>
               );
             })}
           </SimpleGrid>
